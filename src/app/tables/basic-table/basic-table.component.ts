@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Portal } from './portal-model';
+import { TableService } from './table-service';
 
 @Component({
   selector: 'app-basic-table',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BasicTableComponent implements OnInit {
 
-  constructor() { }
+  listaDePortais$!: Observable<Portal[]>
+
+  constructor(private service: TableService) { }
 
   ngOnInit() {
+   
+  }
+
+
+  listar(){
+   
+      this.listaDePortais$ = this.service.buscar();
+      console.log(this.listaDePortais$);
   }
 
 }
